@@ -6,6 +6,8 @@ mod 'puppetlabs/firewall'
 mod 'puppetlabs-apt'
 mod 'puppetlabs/vcsrepo'
 mod 'puppetlabs-inifile'
+mod 'puppet-systemd'
+mod 'puppet-archive'
 mod 'puppet-prometheus'
 mod 'puppet-puppet_apply',
   :git => 'https://github.com/b4ldr/puppet_apply',
