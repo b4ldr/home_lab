@@ -1,0 +1,42 @@
+puppet_apply::packages:
+  - vim
+  - git
+  - ruby-bundler
+  - facter
+  - puppet
+  - zsh
+  - dnsutils
+  - tmux
+puppet_apply::users:
+  jbond:
+    user:
+      shell: /bin/zsh
+      groups:
+        - sudo
+      managehome: true
+      membership: minimum
+    ssh_authorized_key:
+      ensure: present
+      type: ssh-ed25519
+      key: 'AAAAC3NzaC1lZDI1NTE5AAAAIKWgKgk0wUrZkapYfUq57G5o7gkVWM+FzsHOEnT9hQpA'
+my_fw::pre::rules:
+  '000 accept all icmp':
+    proto: 'icmp'
+    action: 'accept'
+  '001 accept all to lo interface':
+    proto: 'all'
+    iniface: 'lo'
+    action : 'accept'
+  '002 reject local traffic not on loopback interface':
+    iniface: '! lo'
+    proto: 'all'
+    destination: '127.0.0.1/8'
+    action: 'reject'
+  '003 accept ssh':
+    proto: 'tcp'
+    dport: 22
+    action: 'accept'
+  '005 accept related established rules':
+    proto: 'all'
+    state: ['RELATED', 'ESTABLISHED']
+    action: 'accept'
