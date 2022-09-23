@@ -1,6 +1,3 @@
-kibana::config:
-  'server.port': 8080
-  'server.host': "%{facts.networking.ip}"
 prometheus::manage_prometheus_server: true
 prometheus::version: '2.0.0'
 prometheus::alerts:
