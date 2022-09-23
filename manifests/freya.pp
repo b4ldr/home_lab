@@ -11,4 +11,9 @@ node 'freya.home.arpa' {
       action => 'accept',
     }
     include kibana
+    firewall {"102 kibana":
+      proto  => 'tcp',
+      dport  => 8080,
+      action => 'accept',
+    }
 }
