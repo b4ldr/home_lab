@@ -22,6 +22,14 @@ prometheus::scrape_configs:
         - '127.0.0.1:9100'
         labels:
           alias: 'freya'
+  - job_name: 'victron'
+    scrape_interval: '5s'
+    scrape_timeout: '5s'
+    static_configs:
+      - targets:
+        - '127.0.0.1:9226'
+        labels:
+          alias: 'victron CC GX'
 grafana::provisioning_datasources:
   apiVersion: 1
   datasources:
