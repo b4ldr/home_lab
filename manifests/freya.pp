@@ -10,4 +10,5 @@ node 'freya.home.arpa' {
       dport  => 9090,
       action => 'accept',
     }
+    include kibana
 }
