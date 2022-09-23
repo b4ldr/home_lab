@@ -1,5 +1,6 @@
 puppet_apply::packages:
   - puppet-module-puppetlabs-cron-core
+  - puppet-module-puppetlabs-sshkeys-core
   - vim
   - git
   - ruby-bundler
