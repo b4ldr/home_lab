@@ -11,4 +11,9 @@ node 'freya.home.arpa' {
       action => 'accept',
     }
     include grafana
+    firewall {"102 grafana":
+      proto  => 'tcp',
+      dport  => 3000,
+      action => 'accept',
+    }
 }
