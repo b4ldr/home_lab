@@ -9,6 +9,7 @@ mod 'puppetlabs-inifile'
 mod 'puppet-systemd'
 mod 'puppet-archive'
 mod 'puppet-prometheus'
+mod 'puppet-elastic_stack'
 mod 'puppet-kibana'
 mod 'puppet-puppet_apply',
   :git => 'https://github.com/b4ldr/puppet_apply',
