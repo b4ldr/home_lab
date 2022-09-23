@@ -1,4 +1,5 @@
 puppet_apply::packages:
+  - puppet-module-puppetlabs-cron-core
   - vim
   - git
   - ruby-bundler
