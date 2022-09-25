@@ -22,4 +22,5 @@ node 'freya.home.arpa' {
     # on storage https://github.com/ncabatoff/zfs-exporter
     # running in tmux
     # https://github.com/danopstech/starlink_exporter
+    # prometheus-snmp-exporter
 }

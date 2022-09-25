@@ -46,6 +46,26 @@ prometheus::scrape_configs:
         - '127.0.0.1:9226'
         labels:
           alias: 'victron CC GX'
+  - job_name: 'snmp'
+    scrape_interval: '5s'
+    scrape_timeout: '5s'
+    static_configs:
+      - targets:
+        - 192.168.1.254 # Router
+        labels:
+          hostname: archer-c9
+    metrics_path: /snmp
+    params:
+      module: [ddwrt]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: [mib]           # Allow per-target MIB override
+        target_label: __param_module   # via 'mib' label
+      - target_label: mib
+        replacement: ''                # Remove the `mib` label
 grafana::provisioning_datasources:
   apiVersion: 1
   datasources:
