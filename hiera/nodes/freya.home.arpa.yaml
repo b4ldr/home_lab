@@ -39,6 +39,14 @@ prometheus::scrape_configs:
         - '127.0.0.1:9817'
         labels:
           alias: 'starlink'
+  - job_name: 'starlink-rs'
+    scrape_interval: '3s'
+    scrape_timeout: '3s'
+    static_configs:
+      - targets:
+        - '127.0.0.1:9814'
+        labels:
+          alias: 'starlink'
   - job_name: 'victron'
     scrape_interval: '5s'
     scrape_timeout: '5s'
