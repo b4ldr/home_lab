@@ -1,4 +1,5 @@
 prometheus::manage_prometheus_server: true
+prometheus::purge_config_dir: false
 prometheus::version: '2.0.0'
 prometheus::alerts:
   groups:
