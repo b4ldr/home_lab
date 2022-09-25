@@ -26,6 +26,10 @@ prometheus::scrape_configs:
         - '192.168.1.120:9100'
         labels:
           alias: 'storage'
+      - targets:
+        - '192.168.1.252:9100'
+        labels:
+          alias: 'turris'
   - job_name: 'starlink'
     scrape_interval: '3s'
     scrape_timeout: '3s'
