@@ -47,6 +47,14 @@ prometheus::scrape_configs:
         - '127.0.0.1:9226'
         labels:
           alias: 'victron CC GX'
+  - job_name: 'hue'
+    scrape_interval: '5s'
+    scrape_timeout: '5s'
+    static_configs:
+      - targets:
+        - '127.0.0.1:9773'
+        labels:
+          alias: 'hue-bridge'
   - job_name: 'snmp'
     scrape_interval: '5s'
     scrape_timeout: '5s'

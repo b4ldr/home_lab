@@ -23,4 +23,5 @@ node 'freya.home.arpa' {
     # running in tmux
     # https://github.com/danopstech/starlink_exporter
     # prometheus-snmp-exporter
+    # https://github.com/aexel90/hue_exporter
 }
