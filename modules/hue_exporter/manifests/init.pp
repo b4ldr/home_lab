@@ -11,7 +11,6 @@ class hue_exporter (
     owner   => 'root',
     group   => 'root',
     mode    => '0555',
-    require => Archive['/tmp/hue-exporter.tar.gz'],
   }
   $command = "/usr/local/bin/hue_exporter -hue-url ${hue_bridge} -username ${api_key}"
   systemd::manage_unit { 'hue-exporter.service':
