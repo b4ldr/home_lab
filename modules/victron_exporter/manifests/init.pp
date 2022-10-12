@@ -20,7 +20,7 @@ class victron_exporter (
     mode    => '0555',
     require => Archive['/tmp/victron-exporter.tar.gz'],
   }
-  $command = "/usr/local/bin/victron-victron_exporter -mqtt.host ${mqtt_host}"
+  $command = "/usr/local/bin/victron-exporter -mqtt.host ${mqtt_host}"
   systemd::manage_unit { 'victron-exporter.service':
     enable        => true,
     active        => true,
