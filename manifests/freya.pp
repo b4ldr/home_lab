@@ -19,6 +19,7 @@ node 'freya.home.arpa' {
     include victron_exporter
     # TODO: create alarms for victron_alarm
     include starlink_exporter
+    include hue_exporter
     # on storage https://github.com/ncabatoff/zfs-exporter
     # running in tmux
     # prometheus-snmp-exporter
