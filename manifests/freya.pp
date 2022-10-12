@@ -16,6 +16,7 @@ node 'freya.home.arpa' {
       dport  => 3000,
       action => 'accept',
     }
+    include victron_exporter
     # https://github.com/suprememoocow/victron-exporter/releases/download/v0.5.0/victron-exporter_0.5.0_linux_amd64.tar.gz
     # ./victron-exporter -mqtt.host 192.168.1.83
     # create alarms for victron_alarm
