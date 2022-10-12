@@ -30,8 +30,9 @@ class victron_exporter (
     service_entry => {
       'Type'      => 'simple',
       'ExecStart' => "/usr/local/bin/victron-victron_exporter ${command}",
-      'User'      => 'nobody',
-      'Group'     => 'nobody',
+      #https://github.com/voxpupuli/puppet-systemd/issues/299
+      #'User'      => 'nobody',
+      #'Group'     => 'nobody',
     },
     install_entry => {
       'WantedBy' => 'multi-user.target',
