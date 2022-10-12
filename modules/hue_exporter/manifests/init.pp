@@ -7,12 +7,20 @@ class hue_exporter (
 ) {
   # build manually from https://github.com/aexel90/hue_exporter
   file { '/usr/local/bin/hue-exporter':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0555',
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0555',
   }
-  $command = "/usr/local/bin/hue_exporter -hue-url ${hue_bridge} -username ${api_key}"
+  file { '/etc/hue':
+    ensure => directory,
+  }
+  $metrics_file = '/etc/hue/hue_metrics.json'
+  file { $metrics_file:
+    ensure => file,
+    source => 'puppet:///modules/hue_exporter/hue_metrics.json',
+  }
+  $command = "/usr/local/bin/hue_exporter -hue-url ${hue_bridge} -username ${api_key} -metrics-file ${metrics_file}"
   systemd::manage_unit { 'hue-exporter.service':
     enable        => true,
     active        => true,
