@@ -17,12 +17,10 @@ node 'freya.home.arpa' {
       action => 'accept',
     }
     include victron_exporter
-    # https://github.com/suprememoocow/victron-exporter/releases/download/v0.5.0/victron-exporter_0.5.0_linux_amd64.tar.gz
-    # ./victron-exporter -mqtt.host 192.168.1.83
-    # create alarms for victron_alarm
+    # TODO: create alarms for victron_alarm
+    include starlink_exporter
     # on storage https://github.com/ncabatoff/zfs-exporter
     # running in tmux
-    # https://github.com/danopstech/starlink_exporter
     # prometheus-snmp-exporter
     # https://github.com/aexel90/hue_exporter
 }
