@@ -1,6 +1,7 @@
 victron_exporter::mqtt_host: 192.168.1.83
 hue_exporter::hue_bridge: 192.168.1.36
 prometheus::log_level: debug
+prometheus::web_enable_admin_api: true
 prometheus::manage_prometheus_server: true
 prometheus::purge_config_dir: false
 prometheus::version: '2.0.0'
