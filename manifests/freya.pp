@@ -21,5 +21,6 @@ node 'freya.home.arpa' {
     include starlink_exporter
     include hue_exporter
     include snmp_exporter
+    include blackbox_exporter
     # on storage https://github.com/ncabatoff/zfs-exporter
 }
