@@ -29,7 +29,7 @@ class victron_exporter (
     },
     service_entry => {
       'Type'      => 'simple',
-      'ExecStart' => "/usr/local/bin/victron-victron_exporter ${command}",
+      'ExecStart' => $command,
       #https://github.com/voxpupuli/puppet-systemd/issues/299
       #'User'      => 'nobody',
       #'Group'     => 'nobody',
