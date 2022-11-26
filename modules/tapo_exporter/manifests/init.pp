@@ -43,8 +43,8 @@ class tapo_exporter (
   }
 
   file { $config_file:
-    ensure => file,
-    config => $config.to_yaml,
+    ensure  => file,
+    content => $config.to_yaml,
   }
 
   $command = "${cmd} --config ${config_file}"
