@@ -1,4 +1,4 @@
-node 'freya.home.arpa' {
+node 'freya.hote.arpa' {
     include puppet_apply
     include my_fw::pre
     include firewall
@@ -22,5 +22,6 @@ node 'freya.home.arpa' {
     include hue_exporter
     include snmp_exporter
     include blackbox_exporter
+    include tapo_exporter
     # on storage https://github.com/ncabatoff/zfs-exporter
 }
