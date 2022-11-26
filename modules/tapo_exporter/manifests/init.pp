@@ -27,7 +27,7 @@ class tapo_exporter (
   #!/bin/bash
   pushd ${git_root}
   exec /usr/bin/python3 -m tapo_exporter.__init__ -c ${config_file}
-  SCRIPT
+  | SCRIPT
 
   file { '/usr/local/bin/tapo-exporter':
     ensure  => file,
