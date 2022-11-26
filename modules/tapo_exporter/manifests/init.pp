@@ -34,7 +34,6 @@ class tapo_exporter (
     owner   => 'root',
     group   => 'root',
     mode    => '0555',
-    cwd     => $git_root,
     content => $script,
     require => Vcsrepo[$git_root],
   }
