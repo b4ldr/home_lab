@@ -75,6 +75,14 @@ prometheus::scrape_configs:
         - '127.0.0.1:9817'
         labels:
           alias: 'starlink'
+  - job_name: 'tp-link'
+    scrape_interval: '15s'
+    scrape_timeout: '15s'
+    static_configs:
+      - targets:
+        - '127.0.0.1:8000'
+        labels:
+          alias: 'TP-link plugs'
   - job_name: 'victron'
     scrape_interval: '5s'
     scrape_timeout: '5s'

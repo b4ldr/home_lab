@@ -29,6 +29,8 @@ class tapo_exporter (
   exec /usr/bin/python3 -m tapo_exporter.__init__ -c ${config_file}
   | SCRIPT
 
+  ensure_packages(['python3-yaml'])
+  # pip install prometheus_client, PyP100
   file { '/usr/local/bin/tapo-exporter':
     ensure  => file,
     owner   => 'root',
