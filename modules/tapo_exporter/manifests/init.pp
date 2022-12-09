@@ -47,6 +47,7 @@ class tapo_exporter (
   file { $config_file:
     ensure  => file,
     content => $config.to_yaml,
+    notify  => Service['tapo-exporter.service'],
   }
 
   $command = "${cmd} --config ${config_file}"
