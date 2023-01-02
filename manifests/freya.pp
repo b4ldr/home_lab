@@ -29,4 +29,5 @@ node 'freya.home.arpa' {
       dport  => 32400,
       action => 'accept',
     }
+    include plex
 }
