@@ -1,6 +1,6 @@
 # @summary install plex
 class plex {
-  ensure_resource('file', '/etc/apt/keyrings', {'ensure' => 'present', 'mode' =>'0755'})
+  ensure_resource('file', '/etc/apt/keyrings', {'directory' => 'present', 'mode' =>'0755'})
   file { '/etc/apt/keyrings/flex.key':
     ensure => file,
     mode   => '0644',
