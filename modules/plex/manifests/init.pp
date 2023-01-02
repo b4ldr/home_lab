@@ -12,7 +12,7 @@ class plex {
     keyring  => '/etc/apt/keyrings/flex.key',
     require  => File['/etc/apt/keyrings/flex.key'],
   }
-  pcakage { 'plexmediaserver':
+  package { 'plexmediaserver':
     ensure  => 'installed',
     require => Apt::Source['plex'],
   }
