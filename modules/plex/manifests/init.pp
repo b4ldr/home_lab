@@ -16,4 +16,8 @@ class plex {
     ensure  => 'installed',
     require => Apt::Source['plex'],
   }
+  service { 'plexmediaserver':
+    ensure  => 'running',
+    require => Package['plexmediaserver'],
+  }
 }
