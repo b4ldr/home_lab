@@ -1,4 +1,4 @@
-node 'unifi.home.arpa' {
+node 'unify.home.arpa' {
     include puppet_apply
     include my_fw::pre
     include firewall
