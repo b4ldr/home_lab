@@ -131,6 +131,14 @@ prometheus::scrape_configs:
         replacement: ''                # Remove the `mib` label
       - target_label: __address__
         replacement: "%{facts.networking.ip}:9116"
+  - job_name: 'cadvisor'
+    scrape_interval: '5s'
+    scrape_timeout: '5s'
+    static_configs:
+      - targets:
+        - '192.168.1.120:8888'
+        labels:
+          alias: 'cadvisor'
 grafana::provisioning_datasources:
   apiVersion: 1
   datasources:
