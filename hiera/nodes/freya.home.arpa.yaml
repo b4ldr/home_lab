@@ -1,16 +1,15 @@
-victron_exporter::mqtt_host: 192.168.1.28
+victron_exporter::mqtt_host: 192.168.1.39
 hue_exporter::hue_bridge: 192.168.1.37
 tapo_exporter::plugs:
   - 192.168.1.22
   - 192.168.1.23
-  - 192.168.1.25
+  - 192.168.1.24
   - 192.168.1.27
   - 192.168.1.30
   - 192.168.1.31
   - 192.168.1.32
   - 192.168.1.33
-  - 192.168.1.35
-  - 192.168.1.36
+  - 192.168.1.34
   - 192.168.1.37
 prometheus::log_level: info
 prometheus::web_enable_admin_api: true
