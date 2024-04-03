@@ -7,7 +7,8 @@ mod 'puppetlabs-apt'
 mod 'puppetlabs/vcsrepo'
 mod 'puppetlabs-inifile'
 mod 'puppet-systemd',
-  :git => 'https://github.com/voxpupuli/puppet-systemd'
+  :git => 'https://github.com/voxpupuli/puppet-systemd',
+  :ref => 'v6.4.0'
 mod 'puppet-archive'
 mod 'puppet-prometheus'
 mod 'puppet-grafana'
