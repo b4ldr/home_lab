@@ -23,6 +23,7 @@ node 'freya.home.arpa' {
   include snmp_exporter
   include blackbox_exporter
   include tapo_exporter
+  include ecowitt_exporter
   # on storage https://github.com/ncabatoff/zfs-exporter
   firewall { '103 plex':
     proto  => 'tcp',
