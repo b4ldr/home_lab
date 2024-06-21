@@ -99,6 +99,14 @@ prometheus::scrape_configs:
         - '127.0.0.1:8000'
         labels:
           alias: 'TP-link plugs'
+  - job_name: 'weather'
+    scrape_interval: '15s'
+    scrape_timeout: '15s'
+    static_configs:
+      - targets:
+        - '127.0.0.1:8088'
+        labels:
+          alias: 'Ecowitt weather'
   - job_name: 'victron'
     scrape_interval: '5s'
     scrape_timeout: '5s'
