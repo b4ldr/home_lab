@@ -29,7 +29,7 @@ node 'freya.home.arpa' {
   include ecowitt_exporter
   firewall { '105 ecowitt':
     proto  => 'tcp',
-    dport  => 8080,
+    dport  => 8088,
     action => 'accept',
     source => '192.168.1.0/24',
   }
