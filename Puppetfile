@@ -12,6 +12,7 @@ mod 'puppet-systemd',
 mod 'puppet-archive'
 mod 'puppet-prometheus'
 mod 'puppet-grafana'
+mod 'puppet-python'
 mod 'puppet-puppet_apply',
   :git => 'https://github.com/b4ldr/puppet_apply',
   :ref => 'main'
