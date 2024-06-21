@@ -15,6 +15,10 @@ class tapo_exporter (
     password => $password,
     plugs    => $plugs,
   }
+  package { 'python-kasa':
+    ensure   => 'installed',
+    provider => 'pip3',
+  }
 
   vcsrepo { $git_root:
     ensure   => present,
