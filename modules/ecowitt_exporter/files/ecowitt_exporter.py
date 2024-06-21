@@ -266,49 +266,55 @@ def logecowitt():
     for key, value in results.items():
         # Send the data to the Prometheus exporter
         if prometheus:
-            metrics[key].set(value)
+            metrics[key].labels(container="ecowitt-exporter").set(value)
             app.logger.debug("Set Prometheus metric %s: %s", key, value)
+    # Return a 200 to the weather station
+    response = app.response_class(
+            response='OK',
+            status=200,
+            mimetype='application/json'
+    )
 
     return response
 
 if __name__ == "__main__":
 
     # Set up various Prometheus metrics with descriptions and units
-    metrics['tempin'] = Gauge(name='tempin', documentation='Indoor temperature', unit=temperature_unit)
-    metrics['temp'] = Gauge(name='temp', documentation='Outdoor temperature', unit=temperature_unit)
-    metrics['temp1'] = Gauge(name='temp1', documentation='Temp 1', unit=temperature_unit)
-    metrics['temp2'] = Gauge(name='temp2', documentation='Temp 2', unit=temperature_unit)
-    metrics['temp3'] = Gauge(name='temp3', documentation='Temp 3', unit=temperature_unit)
-    metrics['temp4'] = Gauge(name='temp4', documentation='Temp 4', unit=temperature_unit)
-    metrics['temp5'] = Gauge(name='temp5', documentation='Temp 5', unit=temperature_unit)
-    metrics['temp6'] = Gauge(name='temp6', documentation='Temp 6', unit=temperature_unit)
-    metrics['temp7'] = Gauge(name='temp7', documentation='Temp 7', unit=temperature_unit)
-    metrics['temp8'] = Gauge(name='temp8', documentation='Temp 8', unit=temperature_unit)
-    metrics['humidity'] = Gauge(name='humidity', documentation='Outdoor humidity', unit='percent')
-    metrics['humidityin'] = Gauge(name='humidityin', documentation='Indoor humidity', unit='percent')
-    metrics['winddir'] = Gauge(name='winddir', documentation='Wind direction', unit='degree')
-    metrics['uv'] = Gauge(name='uv', documentation='UV index')
-    metrics['pm25_ch1'] = Gauge(name='pm25', documentation='PM2.5')
-    metrics['pm25_avg_24h_ch1'] = Gauge(name='pm25_avg_24h', documentation='PM2.5 24-hour average')
-    metrics['pm25batt1'] = Gauge(name='pm25batt', documentation='PM2.5 sensor battery')
-    metrics['aqi'] = Gauge(name='aqi', documentation='Air quality index')
-    metrics['wh65batt'] = Gauge(name='wh65batt', documentation='Weather station battery status')
-    metrics['solarradiation'] = Gauge(name='solarradiation', documentation='Solar irradiance', unit='wm2')
-    metrics['baromrel'] = Gauge(name='baromrel', documentation='Relative barometer', unit=pressure_unit)
-    metrics['baromabs'] = Gauge(name='baromabs', documentation='Absolute barometer', unit=pressure_unit)
-    metrics['windspeed'] = Gauge(name='windspeed', documentation='Wind speed', unit=wind_unit)
-    metrics['windgust'] = Gauge(name='windgust', documentation='Wind gust', unit=wind_unit)
-    metrics['maxdailygust'] = Gauge(name='maxdailygust', documentation='Max daily gust', unit=wind_unit)
-    metrics['rainrate'] = Gauge(name='rainrate', documentation='Rainfall rate', unit=rain_unit)
-    metrics['eventrain'] = Gauge(name='eventrain', documentation='Event rainfall', unit=rain_unit)
-    metrics['hourlyrain'] = Gauge(name='hourlyrain', documentation='Hourly rainfall', unit=rain_unit)
-    metrics['dailyrain'] = Gauge(name='dailyrain', documentation='Daily rainfall', unit=rain_unit)
-    metrics['weeklyrain'] = Gauge(name='weeklyrain', documentation='Weekly rainfall', unit=rain_unit)
-    metrics['monthlyrain'] = Gauge(name='monthlyrain', documentation='Monthly rainfall', unit=rain_unit)
-    metrics['yearlyrain'] = Gauge(name='yearlyrain', documentation='Yearly rainfall', unit=rain_unit)
-    metrics['totalrain'] = Gauge(name='totalrain', documentation='Total rainfall', unit=rain_unit)
-    metrics['lightning'] = Gauge(name='lightning', documentation='Lightning distance', unit=distance_unit)
-    metrics['lightning_num'] = Gauge(name='lightning_num', documentation='Lightning daily count')
+    metrics['tempin'] = Gauge(name='tempin', documentation='Indoor temperature', unit=temperature_unit, labelnames=['container'])
+    metrics['temp'] = Gauge(name='temp', documentation='Outdoor temperature', unit=temperature_unit, labelnames=['container'])
+    metrics['temp1'] = Gauge(name='temp1', documentation='Temp 1', unit=temperature_unit, labelnames=['container'])
+    metrics['temp2'] = Gauge(name='temp2', documentation='Temp 2', unit=temperature_unit, labelnames=['container'])
+    metrics['temp3'] = Gauge(name='temp3', documentation='Temp 3', unit=temperature_unit, labelnames=['container'])
+    metrics['temp4'] = Gauge(name='temp4', documentation='Temp 4', unit=temperature_unit, labelnames=['container'])
+    metrics['temp5'] = Gauge(name='temp5', documentation='Temp 5', unit=temperature_unit, labelnames=['container'])
+    metrics['temp6'] = Gauge(name='temp6', documentation='Temp 6', unit=temperature_unit, labelnames=['container'])
+    metrics['temp7'] = Gauge(name='temp7', documentation='Temp 7', unit=temperature_unit, labelnames=['container'])
+    metrics['temp8'] = Gauge(name='temp8', documentation='Temp 8', unit=temperature_unit, labelnames=['container'])
+    metrics['humidity'] = Gauge(name='humidity', documentation='Outdoor humidity', unit='percent', labelnames=['container'])
+    metrics['humidityin'] = Gauge(name='humidityin', documentation='Indoor humidity', unit='percent', labelnames=['container'])
+    metrics['winddir'] = Gauge(name='winddir', documentation='Wind direction', unit='degree', labelnames=['container'])
+    metrics['uv'] = Gauge(name='uv', documentation='UV index', labelnames=['container'])
+    metrics['pm25_ch1'] = Gauge(name='pm25', documentation='PM2.5', labelnames=['container'])
+    metrics['pm25_avg_24h_ch1'] = Gauge(name='pm25_avg_24h', documentation='PM2.5 24-hour average', labelnames=['container'])
+    metrics['pm25batt1'] = Gauge(name='pm25batt', documentation='PM2.5 sensor battery', labelnames=['container'])
+    metrics['aqi'] = Gauge(name='aqi', documentation='Air quality index', labelnames=['container'])
+    metrics['wh65batt'] = Gauge(name='wh65batt', documentation='Weather station battery status', labelnames=['container'])
+    metrics['solarradiation'] = Gauge(name='solarradiation', documentation='Solar irradiance', unit='wm2', labelnames=['container'])
+    metrics['baromrel'] = Gauge(name='baromrel', documentation='Relative barometer', unit=pressure_unit, labelnames=['container'])
+    metrics['baromabs'] = Gauge(name='baromabs', documentation='Absolute barometer', unit=pressure_unit, labelnames=['container'])
+    metrics['windspeed'] = Gauge(name='windspeed', documentation='Wind speed', unit=wind_unit, labelnames=['container'])
+    metrics['windgust'] = Gauge(name='windgust', documentation='Wind gust', unit=wind_unit, labelnames=['container'])
+    metrics['maxdailygust'] = Gauge(name='maxdailygust', documentation='Max daily gust', unit=wind_unit, labelnames=['container'])
+    metrics['rainrate'] = Gauge(name='rainrate', documentation='Rainfall rate', unit=rain_unit, labelnames=['container'])
+    metrics['eventrain'] = Gauge(name='eventrain', documentation='Event rainfall', unit=rain_unit, labelnames=['container'])
+    metrics['hourlyrain'] = Gauge(name='hourlyrain', documentation='Hourly rainfall', unit=rain_unit, labelnames=['container'])
+    metrics['dailyrain'] = Gauge(name='dailyrain', documentation='Daily rainfall', unit=rain_unit, labelnames=['container'])
+    metrics['weeklyrain'] = Gauge(name='weeklyrain', documentation='Weekly rainfall', unit=rain_unit, labelnames=['container'])
+    metrics['monthlyrain'] = Gauge(name='monthlyrain', documentation='Monthly rainfall', unit=rain_unit, labelnames=['container'])
+    metrics['yearlyrain'] = Gauge(name='yearlyrain', documentation='Yearly rainfall', unit=rain_unit, labelnames=['container'])
+    metrics['totalrain'] = Gauge(name='totalrain', documentation='Total rainfall', unit=rain_unit, labelnames=['container'])
+    metrics['lightning'] = Gauge(name='lightning', documentation='Lightning distance', unit=distance_unit, labelnames=['container'])
+    metrics['lightning_num'] = Gauge(name='lightning_num', documentation='Lightning daily count', labelnames=['container'])
 
     # Increase Flask logging if in debug mode
     if debug:
