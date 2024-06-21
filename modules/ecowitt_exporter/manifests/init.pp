@@ -3,11 +3,11 @@ class ecowitt_exporter {
   $cmd = '/usr/local/sbin/ecowitt-exporter'
 
   file { $cmd:
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0555',
-    content => 'puppet:///modules/ecowitt_exporter/ecowitt_exporter.py',
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0555',
+    source => 'puppet:///modules/ecowitt_exporter/ecowitt_exporter.py',
   }
 
   systemd::manage_unit { 'ecowitt-exporter.service':
