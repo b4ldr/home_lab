@@ -35,38 +35,38 @@ prometheus::alerts:
             description: '{{ $labels.instance }} of job {{ $labels.job }} has been
               down for more than 5 minutes.'
 prometheus::scrape_configs:
-  - job_name: "website-monitoring-icmp"
-    metrics_path: /probe
-    params:
-      module: [icmp]
-    static_configs:
-      - targets:
-          - en.wikipedia.org
-          - www.google.com
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: "%{facts.networking.ip}:9115"
-  - job_name: 'blackbox-http'
-    scrape_interval: '15s'
-    scrape_timeout: '15s'
-    metrics_path: /probe
-    params:
-      module: [http_2xx]
-    static_configs:
-      - targets:
-          - https://en.wikipedia.org/wiki/Main_Page
-          - https://www.google.com/
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: "%{facts.networking.ip}:9115"
+#- job_name: "website-monitoring-icmp"
+#    metrics_path: /probe
+#    params:
+#      module: [icmp]
+#    static_configs:
+#      - targets:
+#          - en.wikipedia.org
+#          - www.google.com
+#    relabel_configs:
+#      - source_labels: [__address__]
+#        target_label: __param_target
+#      - source_labels: [__param_target]
+#        target_label: instance
+#      - target_label: __address__
+#        replacement: "%{facts.networking.ip}:9115"
+#  - job_name: 'blackbox-http'
+#    scrape_interval: '15s'
+#    scrape_timeout: '15s'
+#    metrics_path: /probe
+#    params:
+#      module: [http_2xx]
+#    static_configs:
+#      - targets:
+#          - https://en.wikipedia.org/wiki/Main_Page
+#          - https://www.google.com/
+#    relabel_configs:
+#      - source_labels: [__address__]
+#        target_label: __param_target
+#      - source_labels: [__param_target]
+#        target_label: instance
+#      - target_label: __address__
+#        replacement: "%{facts.networking.ip}:9115"
   - job_name: 'node'
     scrape_interval: '5s'
     scrape_timeout: '5s'
@@ -79,10 +79,10 @@ prometheus::scrape_configs:
         - '192.168.1.120:9100'
         labels:
           alias: 'storage'
-      - targets:
-        - '192.168.1.252:9100'
-        labels:
-          alias: 'turris'
+#      - targets:
+#        - '192.168.1.252:9100'
+#        labels:
+#          alias: 'turris'
   - job_name: 'starlink'
     scrape_interval: '3s'
     scrape_timeout: '3s'
@@ -115,44 +115,44 @@ prometheus::scrape_configs:
         - '127.0.0.1:9226'
         labels:
           alias: 'victron CC GX'
-  - job_name: 'hue'
-    scrape_interval: '5s'
-    scrape_timeout: '5s'
-    static_configs:
-      - targets:
-        - '127.0.0.1:9773'
-        labels:
-          alias: 'hue-bridge'
-  - job_name: 'snmp'
-    scrape_interval: '15s'
-    scrape_timeout: '15s'
-    static_configs:
-      - targets:
-        - 192.168.1.254 # Router
-        labels:
-          hostname: archer-c9
-    metrics_path: /snmp
-    params:
-      module: [ddwrt]
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - source_labels: [mib]           # Allow per-target MIB override
-        target_label: __param_module   # via 'mib' label
-      - target_label: mib
-        replacement: ''                # Remove the `mib` label
-      - target_label: __address__
-        replacement: "%{facts.networking.ip}:9116"
-  - job_name: 'cadvisor'
-    scrape_interval: '5s'
-    scrape_timeout: '5s'
-    static_configs:
-      - targets:
-        - '192.168.1.120:8888'
-        labels:
-          alias: 'cadvisor'
+#  - job_name: 'hue'
+#    scrape_interval: '5s'
+#    scrape_timeout: '5s'
+#    static_configs:
+#      - targets:
+#        - '127.0.0.1:9773'
+#        labels:
+#          alias: 'hue-bridge'
+#  - job_name: 'snmp'
+#    scrape_interval: '15s'
+#    scrape_timeout: '15s'
+#    static_configs:
+#      - targets:
+#        - 192.168.1.254 # Router
+#        labels:
+#          hostname: archer-c9
+#    metrics_path: /snmp
+#    params:
+#      module: [ddwrt]
+#    relabel_configs:
+#      - source_labels: [__address__]
+#        target_label: __param_target
+#      - source_labels: [__param_target]
+#        target_label: instance
+#      - source_labels: [mib]           # Allow per-target MIB override
+#        target_label: __param_module   # via 'mib' label
+#      - target_label: mib
+#        replacement: ''                # Remove the `mib` label
+#      - target_label: __address__
+#        replacement: "%{facts.networking.ip}:9116"
+#  - job_name: 'cadvisor'
+#    scrape_interval: '5s'
+#    scrape_timeout: '5s'
+#    static_configs:
+#      - targets:
+#        - '192.168.1.120:8888'
+#        labels:
+#          alias: 'cadvisor'
 grafana::provisioning_datasources:
   apiVersion: 1
   datasources:
