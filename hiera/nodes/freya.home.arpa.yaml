@@ -41,8 +41,10 @@ prometheus::scrape_configs:
       module: [icmp]
     static_configs:
       - targets:
-          - en.wikipedia.org
+          - l.root-servers.net
           - www.google.com
+          - 192.168.1.1
+          - 192.168.1.252
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -58,7 +60,7 @@ prometheus::scrape_configs:
       module: [http_2xx]
     static_configs:
       - targets:
-          - https://en.wikipedia.org/wiki/Main_Page
+          - https://dns.icann.org/
           - https://www.google.com/
     relabel_configs:
       - source_labels: [__address__]
