@@ -33,15 +33,6 @@ node 'freya.home.arpa' {
     action => 'accept',
     source => '192.168.1.0/24',
   }
-  # on storage https://github.com/ncabatoff/zfs-exporter
-  firewall { '103 plex':
-    proto  => 'tcp',
-    dport  => 32400,
-    action => 'accept',
-    source => '192.168.1.0/24',
-  }
-  include plex
-
   systemd::manage_dropin { 'limits.conf':
     ensure        => present,
     unit          => 'prometheus.service',
